@@ -10,4 +10,4 @@
 [https://zenodo.org/record/3969509#.YGRt_j9n3b3](https://zenodo.org/record/3969509#.YGRt_j9n3b3)
 
 #### Статья по соревнованию: 
-[https://www.aclweb.org/anthology/2020.semeval-1.98.pdf(]https://www.aclweb.org/anthology/2020.semeval-1.98.pdf)
+[https://www.aclweb.org/anthology/2020.semeval-1.98.pdf](https://www.aclweb.org/anthology/2020.semeval-1.98.pdf)
