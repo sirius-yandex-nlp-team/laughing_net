@@ -1,0 +1,18 @@
+name: process_issues
+
+on:
+  issues:
+    types: [opened, edited, labeled, unlabeled]
+
+jobs:
+  set_issue_name:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - env:
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.event.repository.name }}
+          OWNER: ${{ github.event.repository.owner.login }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+        run: |
+          python .github/utils/set_issue_name.py
