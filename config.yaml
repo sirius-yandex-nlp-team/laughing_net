@@ -1,0 +1,5 @@
+neptune:
+  api_token: !env NEPTUNE_API_TOKEN
+  project_name: "konodyuk/sirius-yandex-laughing-net"
+
+resources:
