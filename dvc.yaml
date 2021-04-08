@@ -1,0 +1,109 @@
+stages:
+  reproduce_table_task_1_cbow:
+    cmd: cd external/table_repo && docker-compose up --build task_1_cbow
+    deps:
+    - external/table_repo/src
+    - external/table_repo/Dockerfile
+    - external/table_repo/docker-compose.yml
+    - external/table_repo/data
+    - external/table_repo/configurations
+    outs:
+    - external/table_repo/exp1/cbow_finetune_0_lr_0.0003_schedule_none_epoch_10_feature_edit-context_extra_0_seed_1
+    - external/table_repo/exp1/cbow_finetune_0_lr_0.0003_schedule_none_epoch_10_feature_edit-original_extra_0_seed_1
+    - external/table_repo/exp1/cbow_finetune_0_lr_0.001_schedule_none_epoch_10_feature_edit-context_extra_1_seed_1
+    - external/table_repo/exp1/cbow_finetune_0_lr_0.0003_schedule_none_epoch_10_feature_edit-original_extra_1_seed_1
+    - external/table_repo/exp1/cbow_finetune_1_lr_0.0003_schedule_none_epoch_10_feature_edit-context_extra_0_seed_1
+    - external/table_repo/exp1/cbow_finetune_1_lr_0.001_schedule_none_epoch_10_feature_edit-original_extra_0_seed_1
+    - external/table_repo/exp1/cbow_finetune_1_lr_0.0003_schedule_none_epoch_10_feature_edit-context_extra_1_seed_1
+    - external/table_repo/exp1/cbow_finetune_1_lr_0.001_schedule_none_epoch_10_feature_edit-original_extra_1_seed_1
+
+  reproduce_table_task_1_bert:
+    cmd: cd external/table_repo && docker-compose up --build task_1_bert
+    deps:
+    - external/table_repo/src
+    - external/table_repo/Dockerfile
+    - external/table_repo/docker-compose.yml
+    - external/table_repo/data
+    - external/table_repo/configurations
+    outs:
+    - external/table_repo/exp1/bert-base-uncased_finetune_0_lr_0.001_schedule_none_epoch_10_feature_edit-context_extra_0_seed_1
+    - external/table_repo/exp1/bert-base-uncased_finetune_0_lr_0.001_schedule_none_epoch_10_feature_edit-original_extra_0_seed_1
+    - external/table_repo/exp1/bert-base-uncased_finetune_0_lr_0.0003_schedule_none_epoch_10_feature_edit-context_extra_1_seed_1
+    - external/table_repo/exp1/bert-base-uncased_finetune_0_lr_0.001_schedule_none_epoch_10_feature_edit-original_extra_1_seed_1
+    - external/table_repo/exp1/bert-base-uncased_finetune_1_lr_5e-05_schedule_linear_schedule_with_warmup_epoch_3_feature_edit-context_extra_0_seed_1
+    - external/table_repo/exp1/bert-base-uncased_finetune_1_lr_2e-05_schedule_linear_schedule_with_warmup_epoch_10_feature_edit-original_extra_0_seed_1
+    - external/table_repo/exp1/bert-base-uncased_finetune_1_lr_2e-05_schedule_linear_schedule_with_warmup_epoch_10_feature_edit-context_extra_1_seed_1
+    - external/table_repo/exp1/bert-base-uncased_finetune_1_lr_5e-05_schedule_linear_schedule_with_warmup_epoch_3_feature_edit-original_extra_1_seed_1
+
+  reproduce_table_task_1_roberta:
+    cmd: cd external/table_repo && docker-compose up --build task_1_roberta
+    deps:
+    - external/table_repo/src
+    - external/table_repo/Dockerfile
+    - external/table_repo/docker-compose.yml
+    - external/table_repo/data
+    - external/table_repo/configurations
+    outs:
+    - external/table_repo/exp1/roberta-base_finetune_0_lr_0.0003_schedule_none_epoch_10_feature_edit-context_extra_0_seed_1
+    - external/table_repo/exp1/roberta-base_finetune_0_lr_0.0003_schedule_none_epoch_10_feature_edit-original_extra_0_seed_1
+    - external/table_repo/exp1/roberta-base_finetune_0_lr_0.0003_schedule_none_epoch_10_feature_edit-context_extra_1_seed_1
+    - external/table_repo/exp1/roberta-base_finetune_0_lr_0.0003_schedule_none_epoch_10_feature_edit-original_extra_1_seed_1
+    - external/table_repo/exp1/roberta-base_finetune_1_lr_2e-05_schedule_none_epoch_10_feature_edit-context_extra_0_seed_1
+    - external/table_repo/exp1/roberta-base_finetune_1_lr_2e-05_schedule_linear_schedule_with_warmup_epoch_10_feature_edit-original_extra_0_seed_1
+    - external/table_repo/exp1/roberta-base_finetune_1_lr_2e-05_schedule_linear_schedule_with_warmup_epoch_10_feature_edit-context_extra_1_seed_1
+    - external/table_repo/exp1/roberta-base_finetune_1_lr_2e-05_schedule_linear_schedule_with_warmup_epoch_3_feature_edit-original_extra_1_seed_1
+
+  reproduce_table_task_2_cbow:
+    cmd: cd external/table_repo && docker-compose up --build task_2_cbow
+    deps:
+    - external/table_repo/src
+    - external/table_repo/Dockerfile
+    - external/table_repo/docker-compose.yml
+    - external/table_repo/data
+    - external/table_repo/configurations
+    outs:
+    - external/table_repo/exp2/cbow_finetune_0_lr_0.001_schedule_none_epoch_10_feature_edit-context_extra_0_seed_1
+    - external/table_repo/exp2/cbow_finetune_0_lr_0.001_schedule_none_epoch_10_feature_edit-original_extra_0_seed_1
+    - external/table_repo/exp2/cbow_finetune_0_lr_0.0003_schedule_none_epoch_10_feature_edit-context_extra_1_seed_1
+    - external/table_repo/exp2/cbow_finetune_0_lr_0.001_schedule_none_epoch_10_feature_edit-original_extra_1_seed_1
+    - external/table_repo/exp2/cbow_finetune_1_lr_0.0003_schedule_none_epoch_10_feature_edit-context_extra_0_seed_1
+    - external/table_repo/exp2/cbow_finetune_1_lr_0.0003_schedule_none_epoch_10_feature_edit-original_extra_0_seed_1
+    - external/table_repo/exp2/cbow_finetune_1_lr_0.0003_schedule_none_epoch_10_feature_edit-context_extra_1_seed_1
+    - external/table_repo/exp2/cbow_finetune_1_lr_0.0003_schedule_none_epoch_10_feature_edit-original_extra_1_seed_1
+
+  reproduce_table_task_2_bert:
+    cmd: cd external/table_repo && docker-compose up --build task_2_bert
+    deps:
+    - external/table_repo/src
+    - external/table_repo/Dockerfile
+    - external/table_repo/docker-compose.yml
+    - external/table_repo/data
+    - external/table_repo/configurations
+    outs:
+    - external/table_repo/exp2/bert-base-uncased_finetune_0_lr_0.001_schedule_none_epoch_10_feature_edit-context_extra_0_seed_1
+    - external/table_repo/exp2/bert-base-uncased_finetune_0_lr_0.0003_schedule_none_epoch_10_feature_edit-original_extra_0_seed_1
+    - external/table_repo/exp2/bert-base-uncased_finetune_0_lr_0.001_schedule_none_epoch_10_feature_edit-context_extra_1_seed_1
+    - external/table_repo/exp2/bert-base-uncased_finetune_0_lr_0.001_schedule_none_epoch_10_feature_edit-original_extra_1_seed_1
+    - external/table_repo/exp2/bert-base-uncased_finetune_1_lr_5e-05_schedule_none_epoch_10_feature_edit-context_extra_0_seed_1
+    - external/table_repo/exp2/bert-base-uncased_finetune_1_lr_5e-05_schedule_none_epoch_10_feature_edit-original_extra_0_seed_1
+    - external/table_repo/exp2/bert-base-uncased_finetune_1_lr_2e-05_schedule_none_epoch_10_feature_edit-context_extra_1_seed_1
+    - external/table_repo/exp2/bert-base-uncased_finetune_1_lr_2e-05_schedule_none_epoch_10_feature_edit-original_extra_1_seed_1
+
+  reproduce_table_task_2_roberta:
+    cmd: cd external/table_repo && docker-compose up --build task_2_roberta
+    deps:
+    - external/table_repo/src
+    - external/table_repo/Dockerfile
+    - external/table_repo/docker-compose.yml
+    - external/table_repo/data
+    - external/table_repo/configurations
+    outs:
+    - external/table_repo/exp2/roberta-base_finetune_0_lr_0.0003_schedule_none_epoch_10_feature_edit-context_extra_0_seed_1
+    - external/table_repo/exp2/roberta-base_finetune_0_lr_0.0003_schedule_none_epoch_10_feature_edit-original_extra_0_seed_1
+    - external/table_repo/exp2/roberta-base_finetune_0_lr_0.001_schedule_none_epoch_10_feature_edit-context_extra_1_seed_1
+    - external/table_repo/exp2/roberta-base_finetune_0_lr_0.0003_schedule_none_epoch_10_feature_edit-original_extra_1_seed_1
+    - external/table_repo/exp2/roberta-base_finetune_1_lr_2e-05_schedule_linear_schedule_with_warmup_epoch_3_feature_edit-context_extra_0_seed_1
+    - external/table_repo/exp2/roberta-base_finetune_1_lr_2e-05_schedule_linear_schedule_with_warmup_epoch_3_feature_edit-original_extra_0_seed_1
+    - external/table_repo/exp2/roberta-base_finetune_1_lr_2e-05_schedule_none_epoch_10_feature_edit-context_extra_1_seed_1
+    - external/table_repo/exp2/roberta-base_finetune_1_lr_5e-05_schedule_none_epoch_10_feature_edit-original_extra_1_seed_1
+  
