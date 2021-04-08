@@ -54,3 +54,21 @@ stages:
       md5: 335fc57b3b51a9738eecd4200e1e4950.dir
       size: 21416930
       nfiles: 7
+  download_data:
+    cmd: python3 laughing_net/data/download.py
+    deps:
+    - path: laughing_net/data/download.py
+      md5: b4b1c1b24051cb9af17c7fd4a5d21202
+      size: 604
+    params:
+      params.yaml:
+        data.url: https://zenodo.org/record/3969509/files/semeval-2020-task-7-dataset.zip
+        data.zip_file: semeval-2020-task-7-dataset.zip
+    outs:
+    - path: data/raw/semeval-2020-task-7-dataset
+      md5: 1f1dfa45b0bb665ce7927b1d59427163.dir
+      size: 5717613
+      nfiles: 14
+    - path: data/raw/semeval-2020-task-7-dataset.zip
+      md5: 9953e94c4dc7e50d68b010d68a143f9c
+      size: 1621456

@@ -106,4 +106,13 @@ stages:
     - external/table_repo/exp2/roberta-base_finetune_1_lr_2e-05_schedule_linear_schedule_with_warmup_epoch_3_feature_edit-original_extra_0_seed_1
     - external/table_repo/exp2/roberta-base_finetune_1_lr_2e-05_schedule_none_epoch_10_feature_edit-context_extra_1_seed_1
     - external/table_repo/exp2/roberta-base_finetune_1_lr_5e-05_schedule_none_epoch_10_feature_edit-original_extra_1_seed_1
-  
+  download_data:
+    cmd: python3 laughing_net/data/download.py
+    deps:
+    - laughing_net/data/download.py
+    params:
+    - data.url
+    - data.zip_file
+    outs:
+    - data/raw/semeval-2020-task-7-dataset
+    - data/raw/semeval-2020-task-7-dataset.zip
