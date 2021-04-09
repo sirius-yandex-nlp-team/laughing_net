@@ -54,3 +54,57 @@ stages:
       md5: 335fc57b3b51a9738eecd4200e1e4950.dir
       size: 21416930
       nfiles: 7
+  reproduce_table_task_2_cbow:
+    cmd: cd external/table_repo && docker-compose up --build task_2_cbow
+    deps:
+    - path: external/table_repo/Dockerfile
+      md5: 26c223d7a6c6a04eb18916336607ad51
+      size: 546
+    - path: external/table_repo/configurations
+      md5: c3aa73aac796babc9dbf660b6ddb1aa6.dir
+      size: 15354
+      nfiles: 6
+    - path: external/table_repo/data
+      md5: eb7944c72c0939f4870d5998d7f2ca73.dir
+      size: 6445664
+      nfiles: 10
+    - path: external/table_repo/docker-compose.yml
+      md5: a0d4357c2b85b66a4cc8aefb25def8ac
+      size: 640
+    - path: external/table_repo/src
+      md5: 72ac4ddfef275e17fe54016059a24a28.dir
+      size: 67895
+      nfiles: 7
+    outs:
+    - path: external/table_repo/exp2/cbow_finetune_0_lr_0.0003_schedule_none_epoch_10_feature_edit-context_extra_1_seed_1
+      md5: 363c255b9d39ccfa0ccc41335eba9b71.dir
+      size: 21711430
+      nfiles: 7
+    - path: external/table_repo/exp2/cbow_finetune_0_lr_0.001_schedule_none_epoch_10_feature_edit-context_extra_0_seed_1
+      md5: bad6416dd6f4eddd195ec4942e548775.dir
+      size: 21711563
+      nfiles: 7
+    - path: external/table_repo/exp2/cbow_finetune_0_lr_0.001_schedule_none_epoch_10_feature_edit-original_extra_0_seed_1
+      md5: 83c1f96ca7d7433bd70eaa0de0f2fde1.dir
+      size: 21711882
+      nfiles: 7
+    - path: external/table_repo/exp2/cbow_finetune_0_lr_0.001_schedule_none_epoch_10_feature_edit-original_extra_1_seed_1
+      md5: 5662729b7f1dfbcb6936743d055d9d98.dir
+      size: 21711782
+      nfiles: 7
+    - path: external/table_repo/exp2/cbow_finetune_1_lr_0.0003_schedule_none_epoch_10_feature_edit-context_extra_0_seed_1
+      md5: 903d9469c81b4844feb7c18f1fdff089.dir
+      size: 21711342
+      nfiles: 7
+    - path: external/table_repo/exp2/cbow_finetune_1_lr_0.0003_schedule_none_epoch_10_feature_edit-context_extra_1_seed_1
+      md5: dac32c23b9315cdd1bf7c66d46c36c3d.dir
+      size: 21711378
+      nfiles: 7
+    - path: external/table_repo/exp2/cbow_finetune_1_lr_0.0003_schedule_none_epoch_10_feature_edit-original_extra_0_seed_1
+      md5: 7eae74b5b1a6d4c5e2fa02907c4a7b92.dir
+      size: 21711322
+      nfiles: 7
+    - path: external/table_repo/exp2/cbow_finetune_1_lr_0.0003_schedule_none_epoch_10_feature_edit-original_extra_1_seed_1
+      md5: 9a269fcb0ad7f67a7cf4886d5d338c3c.dir
+      size: 21711466
+      nfiles: 7
