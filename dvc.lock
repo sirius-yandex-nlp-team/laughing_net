@@ -54,3 +54,111 @@ stages:
       md5: 335fc57b3b51a9738eecd4200e1e4950.dir
       size: 21416930
       nfiles: 7
+  reproduce_table_task_2_cbow:
+    cmd: cd external/table_repo && docker-compose up --build task_2_cbow
+    deps:
+    - path: external/table_repo/Dockerfile
+      md5: 26c223d7a6c6a04eb18916336607ad51
+      size: 546
+    - path: external/table_repo/configurations
+      md5: c3aa73aac796babc9dbf660b6ddb1aa6.dir
+      size: 15354
+      nfiles: 6
+    - path: external/table_repo/data
+      md5: eb7944c72c0939f4870d5998d7f2ca73.dir
+      size: 6445664
+      nfiles: 10
+    - path: external/table_repo/docker-compose.yml
+      md5: a0d4357c2b85b66a4cc8aefb25def8ac
+      size: 640
+    - path: external/table_repo/src
+      md5: 72ac4ddfef275e17fe54016059a24a28.dir
+      size: 67895
+      nfiles: 7
+    outs:
+    - path: external/table_repo/exp2/cbow_finetune_0_lr_0.0003_schedule_none_epoch_10_feature_edit-context_extra_1_seed_1
+      md5: 719d8c3de6f1b0346340f4811043015b.dir
+      size: 1508
+      nfiles: 2
+    - path: external/table_repo/exp2/cbow_finetune_0_lr_0.001_schedule_none_epoch_10_feature_edit-context_extra_0_seed_1
+      md5: defa5645776a824c826729a5f80d3e13.dir
+      size: 1465
+      nfiles: 2
+    - path: external/table_repo/exp2/cbow_finetune_0_lr_0.001_schedule_none_epoch_10_feature_edit-original_extra_0_seed_1
+      md5: 8ab9ca62cdd116627ec1a5d4d92fbf5b.dir
+      size: 1507
+      nfiles: 2
+    - path: external/table_repo/exp2/cbow_finetune_0_lr_0.001_schedule_none_epoch_10_feature_edit-original_extra_1_seed_1
+      md5: cba6aeee3e2015a210e65705a15aac9d.dir
+      size: 1508
+      nfiles: 2
+    - path: external/table_repo/exp2/cbow_finetune_1_lr_0.0003_schedule_none_epoch_10_feature_edit-context_extra_0_seed_1
+      md5: 61148e647c3c364be455b9cfc1439b00.dir
+      size: 1507
+      nfiles: 2
+    - path: external/table_repo/exp2/cbow_finetune_1_lr_0.0003_schedule_none_epoch_10_feature_edit-context_extra_1_seed_1
+      md5: d741dc106341b07667cb74477578056f.dir
+      size: 1508
+      nfiles: 2
+    - path: external/table_repo/exp2/cbow_finetune_1_lr_0.0003_schedule_none_epoch_10_feature_edit-original_extra_0_seed_1
+      md5: d24343877ca7ce76fcb1c57c909ee1c4.dir
+      size: 1511
+      nfiles: 2
+    - path: external/table_repo/exp2/cbow_finetune_1_lr_0.0003_schedule_none_epoch_10_feature_edit-original_extra_1_seed_1
+      md5: 23e19a0b652335ca6f4c753d8ec74123.dir
+      size: 1512
+      nfiles: 2
+  reproduce_table_task_1_roberta:
+    cmd: cd external/table_repo && docker-compose up --build task_1_roberta
+    deps:
+    - path: external/table_repo/Dockerfile
+      md5: 26c223d7a6c6a04eb18916336607ad51
+      size: 546
+    - path: external/table_repo/configurations
+      md5: c3aa73aac796babc9dbf660b6ddb1aa6.dir
+      size: 15354
+      nfiles: 6
+    - path: external/table_repo/data
+      md5: eb7944c72c0939f4870d5998d7f2ca73.dir
+      size: 6445664
+      nfiles: 10
+    - path: external/table_repo/docker-compose.yml
+      md5: a0d4357c2b85b66a4cc8aefb25def8ac
+      size: 640
+    - path: external/table_repo/src
+      md5: 72ac4ddfef275e17fe54016059a24a28.dir
+      size: 67895
+      nfiles: 7
+    outs:
+    - path: external/table_repo/exp1/roberta-base_finetune_0_lr_0.0003_schedule_none_epoch_10_feature_edit-context_extra_0_seed_1
+      md5: 73f0d1c9bfaaade0933a4ea31c033bc7.dir
+      size: 502120758
+      nfiles: 7
+    - path: external/table_repo/exp1/roberta-base_finetune_0_lr_0.0003_schedule_none_epoch_10_feature_edit-context_extra_1_seed_1
+      md5: 6ced56d5d43efaa6f8f12ed63891d76e.dir
+      size: 502116543
+      nfiles: 7
+    - path: external/table_repo/exp1/roberta-base_finetune_0_lr_0.0003_schedule_none_epoch_10_feature_edit-original_extra_0_seed_1
+      md5: 7905ed173dd5a99e98aa031c349ac3a0.dir
+      size: 502116606
+      nfiles: 7
+    - path: external/table_repo/exp1/roberta-base_finetune_0_lr_0.0003_schedule_none_epoch_10_feature_edit-original_extra_1_seed_1
+      md5: 4b18cf9bf3dc517a9c08ec81343b5dd5.dir
+      size: 502116508
+      nfiles: 7
+    - path: external/table_repo/exp1/roberta-base_finetune_1_lr_2e-05_schedule_linear_schedule_with_warmup_epoch_10_feature_edit-context_extra_1_seed_1
+      md5: 91eed2c50769107dd207dcb8463383fa.dir
+      size: 498975777
+      nfiles: 7
+    - path: external/table_repo/exp1/roberta-base_finetune_1_lr_2e-05_schedule_linear_schedule_with_warmup_epoch_10_feature_edit-original_extra_0_seed_1
+      md5: 0571db1f441bfbfc4b1c60754994245b.dir
+      size: 498975844
+      nfiles: 7
+    - path: external/table_repo/exp1/roberta-base_finetune_1_lr_2e-05_schedule_linear_schedule_with_warmup_epoch_3_feature_edit-original_extra_1_seed_1
+      md5: f9b9296a1e306a9d294573442b59788a.dir
+      size: 498962201
+      nfiles: 7
+    - path: external/table_repo/exp1/roberta-base_finetune_1_lr_2e-05_schedule_none_epoch_10_feature_edit-context_extra_0_seed_1
+      md5: 6413f72d40113ea91c0f998d5d3bc341.dir
+      size: 498975599
+      nfiles: 7
