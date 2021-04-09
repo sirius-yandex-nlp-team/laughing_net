@@ -116,3 +116,27 @@ stages:
     outs:
     - data/raw/semeval-2020-task-7-dataset
     - data/raw/semeval-2020-task-7-dataset.zip
+  substitute_replacements_task_1_train:
+    cmd: python3 laughing_net/features/substitute_replacements.py --input data/raw/semeval-2020-task-7-dataset/subtask-1/train.csv
+      --output data/interim/task-1/train_sub.csv
+    deps:
+    - data/raw/semeval-2020-task-7-dataset/subtask-1/train.csv
+    - laughing_net/features/substitute_replacements.py
+    outs:
+    - data/interim/task-1/train_sub.csv
+  substitute_replacements_task_1_dev:
+    cmd: python3 laughing_net/features/substitute_replacements.py --input data/raw/semeval-2020-task-7-dataset/subtask-1/dev.csv
+      --output data/interim/task-1/dev_sub.csv
+    deps:
+    - data/raw/semeval-2020-task-7-dataset/subtask-1/dev.csv
+    - laughing_net/features/substitute_replacements.py
+    outs:
+    - data/interim/task-1/dev_sub.csv
+  substitute_replacements_task_1_test:
+    cmd: python3 laughing_net/features/substitute_replacements.py --input data/raw/semeval-2020-task-7-dataset/subtask-1/test.csv
+      --output data/interim/task-1/test_sub.csv
+    deps:
+    - data/raw/semeval-2020-task-7-dataset/subtask-1/test.csv
+    - laughing_net/features/substitute_replacements.py
+    outs:
+    - data/interim/task-1/test_sub.csv

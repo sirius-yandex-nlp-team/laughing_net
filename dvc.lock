@@ -58,8 +58,8 @@ stages:
     cmd: python3 laughing_net/data/download.py
     deps:
     - path: laughing_net/data/download.py
-      md5: b4b1c1b24051cb9af17c7fd4a5d21202
-      size: 604
+      md5: 1d89869725a2d26d227fbde48195c7b8
+      size: 622
     params:
       params.yaml:
         data.url: https://zenodo.org/record/3969509/files/semeval-2020-task-7-dataset.zip
@@ -72,3 +72,45 @@ stages:
     - path: data/raw/semeval-2020-task-7-dataset.zip
       md5: 9953e94c4dc7e50d68b010d68a143f9c
       size: 1621456
+  substitute_replacements_task_1_train:
+    cmd: python3 laughing_net/features/substitute_replacements.py --input data/raw/semeval-2020-task-7-dataset/subtask-1/train.csv
+      --output data/interim/task-1/train_sub.csv
+    deps:
+    - path: data/raw/semeval-2020-task-7-dataset/subtask-1/train.csv
+      md5: aeff8a77a3bb1ed5abfcd1483edd329c
+      size: 947914
+    - path: laughing_net/features/substitute_replacements.py
+      md5: 9213c1c821af2bc56a8c922dfbf150b0
+      size: 999
+    outs:
+    - path: data/interim/task-1/train_sub.csv
+      md5: 80707d1f7ad2560f90a407c7cd6c6e2a
+      size: 784928
+  substitute_replacements_task_1_dev:
+    cmd: python3 laughing_net/features/substitute_replacements.py --input data/raw/semeval-2020-task-7-dataset/subtask-1/dev.csv
+      --output data/interim/task-1/dev_sub.csv
+    deps:
+    - path: data/raw/semeval-2020-task-7-dataset/subtask-1/dev.csv
+      md5: 2b231590dec5dd304e1aadf2ee8b1f34
+      size: 241339
+    - path: laughing_net/features/substitute_replacements.py
+      md5: 9213c1c821af2bc56a8c922dfbf150b0
+      size: 999
+    outs:
+    - path: data/interim/task-1/dev_sub.csv
+      md5: 503dc1d67554108170b5c0e3949a42b0
+      size: 200379
+  substitute_replacements_task_1_test:
+    cmd: python3 laughing_net/features/substitute_replacements.py --input data/raw/semeval-2020-task-7-dataset/subtask-1/test.csv
+      --output data/interim/task-1/test_sub.csv
+    deps:
+    - path: data/raw/semeval-2020-task-7-dataset/subtask-1/test.csv
+      md5: b59003d5f012914d3ef971fead9296e2
+      size: 297352
+    - path: laughing_net/features/substitute_replacements.py
+      md5: 9213c1c821af2bc56a8c922dfbf150b0
+      size: 999
+    outs:
+    - path: data/interim/task-1/test_sub.csv
+      md5: 4684dec550815be206f8575a4af34abc
+      size: 246201
