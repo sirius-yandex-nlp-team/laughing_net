@@ -140,3 +140,31 @@ stages:
     - laughing_net/features/substitute_replacements.py
     outs:
     - data/interim/task-1/test_sub.csv
+  tfidf_task_1_train:
+    cmd: python3 laughing_net/features/tfidf.py --input data/interim/task-1/train_sub.csv
+      --output data/interim/task-1/train_tfidf.npz --encoder artifacts/tfidf_encoder.pkl
+      --fit
+    deps:
+    - data/interim/task-1/train_sub.csv
+    - laughing_net/features/tfidf.py
+    outs:
+    - artifacts/tfidf_encoder.pkl
+    - data/interim/task-1/train_tfidf.npz
+  tfidf_task_1_dev:
+    cmd: python3 laughing_net/features/tfidf.py --input data/interim/task-1/dev_sub.csv
+      --output data/interim/task-1/dev_tfidf.npz --encoder artifacts/tfidf_encoder.pkl
+    deps:
+    - data/interim/task-1/dev_sub.csv
+    - laughing_net/features/tfidf.py
+    - artifacts/tfidf_encoder.pkl
+    outs:
+    - data/interim/task-1/dev_tfidf.npz
+  tfidf_task_1_test:
+    cmd: python3 laughing_net/features/tfidf.py --input data/interim/task-1/test_sub.csv
+      --output data/interim/task-1/test_tfidf.npz --encoder artifacts/tfidf_encoder.pkl
+    deps:
+    - data/interim/task-1/test_sub.csv
+    - laughing_net/features/tfidf.py
+    - artifacts/tfidf_encoder.pkl
+    outs:
+    - data/interim/task-1/test_tfidf.npz

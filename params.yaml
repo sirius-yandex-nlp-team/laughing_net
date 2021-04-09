@@ -1,3 +1,8 @@
 data:
   url: https://zenodo.org/record/3969509/files/semeval-2020-task-7-dataset.zip
   zip_file: semeval-2020-task-7-dataset.zip
+
+features:
+  tfidf:
+    max_features: 1000
+    stop_words: english

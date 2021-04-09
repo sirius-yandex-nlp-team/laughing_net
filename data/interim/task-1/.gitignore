@@ -1,3 +1,6 @@
 /train_sub.csv
 /dev_sub.csv
 /test_sub.csv
+/train_tfidf.npz
+/dev_tfidf.npz
+/test_tfidf.npz

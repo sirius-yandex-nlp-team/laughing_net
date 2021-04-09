@@ -114,3 +114,55 @@ stages:
     - path: data/interim/task-1/test_sub.csv
       md5: 4684dec550815be206f8575a4af34abc
       size: 246201
+  tfidf_task_1_train:
+    cmd: python3 laughing_net/features/tfidf.py --input data/interim/task-1/train_sub.csv
+      --output data/interim/task-1/train_tfidf.npz --encoder artifacts/tfidf_encoder.pkl
+      --fit
+    deps:
+    - path: data/interim/task-1/train_sub.csv
+      md5: 80707d1f7ad2560f90a407c7cd6c6e2a
+      size: 784928
+    - path: laughing_net/features/tfidf.py
+      md5: 45a7dea045f6528e7122c414061dfa37
+      size: 1474
+    outs:
+    - path: artifacts/tfidf_encoder.pkl
+      md5: 7e37ea252ae95ab097374d16158bb5c2
+      size: 143182
+    - path: data/interim/task-1/train_tfidf.npz
+      md5: 1d9921e6376ae998ba782128e222811c
+      size: 354643
+  tfidf_task_1_dev:
+    cmd: python3 laughing_net/features/tfidf.py --input data/interim/task-1/dev_sub.csv
+      --output data/interim/task-1/dev_tfidf.npz --encoder artifacts/tfidf_encoder.pkl
+    deps:
+    - path: artifacts/tfidf_encoder.pkl
+      md5: 7e37ea252ae95ab097374d16158bb5c2
+      size: 143182
+    - path: data/interim/task-1/dev_sub.csv
+      md5: 503dc1d67554108170b5c0e3949a42b0
+      size: 200379
+    - path: laughing_net/features/tfidf.py
+      md5: 45a7dea045f6528e7122c414061dfa37
+      size: 1474
+    outs:
+    - path: data/interim/task-1/dev_tfidf.npz
+      md5: 0f046c86635239adfc407e05bf96992f
+      size: 77656
+  tfidf_task_1_test:
+    cmd: python3 laughing_net/features/tfidf.py --input data/interim/task-1/test_sub.csv
+      --output data/interim/task-1/test_tfidf.npz --encoder artifacts/tfidf_encoder.pkl
+    deps:
+    - path: artifacts/tfidf_encoder.pkl
+      md5: 7e37ea252ae95ab097374d16158bb5c2
+      size: 143182
+    - path: data/interim/task-1/test_sub.csv
+      md5: 4684dec550815be206f8575a4af34abc
+      size: 246201
+    - path: laughing_net/features/tfidf.py
+      md5: 45a7dea045f6528e7122c414061dfa37
+      size: 1474
+    outs:
+    - path: data/interim/task-1/test_tfidf.npz
+      md5: 662b75076a5420d09f2b49942a71514d
+      size: 94037
