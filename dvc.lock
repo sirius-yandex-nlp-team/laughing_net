@@ -54,3 +54,57 @@ stages:
       md5: 335fc57b3b51a9738eecd4200e1e4950.dir
       size: 21416930
       nfiles: 7
+  reproduce_table_task_1_bert:
+    cmd: cd external/table_repo && docker-compose up --build task_1_bert
+    deps:
+    - path: external/table_repo/Dockerfile
+      md5: 26c223d7a6c6a04eb18916336607ad51
+      size: 546
+    - path: external/table_repo/configurations
+      md5: c3aa73aac796babc9dbf660b6ddb1aa6.dir
+      size: 15354
+      nfiles: 6
+    - path: external/table_repo/data
+      md5: eb7944c72c0939f4870d5998d7f2ca73.dir
+      size: 6445664
+      nfiles: 10
+    - path: external/table_repo/docker-compose.yml
+      md5: a0d4357c2b85b66a4cc8aefb25def8ac
+      size: 640
+    - path: external/table_repo/src
+      md5: 72ac4ddfef275e17fe54016059a24a28.dir
+      size: 67895
+      nfiles: 7
+    outs:
+    - path: external/table_repo/exp1/bert-base-uncased_finetune_0_lr_0.0003_schedule_none_epoch_10_feature_edit-context_extra_1_seed_1
+      md5: 7e447622539e78d07f520ed4b4406220.dir
+      size: 441462650
+      nfiles: 7
+    - path: external/table_repo/exp1/bert-base-uncased_finetune_0_lr_0.001_schedule_none_epoch_10_feature_edit-context_extra_0_seed_1
+      md5: 42050f83c3d0024103b53475f6972d34.dir
+      size: 441465858
+      nfiles: 7
+    - path: external/table_repo/exp1/bert-base-uncased_finetune_0_lr_0.001_schedule_none_epoch_10_feature_edit-original_extra_0_seed_1
+      md5: b0b76cc3448f131b9670fd2e801c76aa.dir
+      size: 441462749
+      nfiles: 7
+    - path: external/table_repo/exp1/bert-base-uncased_finetune_0_lr_0.001_schedule_none_epoch_10_feature_edit-original_extra_1_seed_1
+      md5: 257e74a4ea56b0f0f9a18d4ee662557a.dir
+      size: 441462615
+      nfiles: 7
+    - path: external/table_repo/exp1/bert-base-uncased_finetune_1_lr_2e-05_schedule_linear_schedule_with_warmup_epoch_10_feature_edit-context_extra_1_seed_1
+      md5: 04846fe2ea771714643965aae1dd2c13.dir
+      size: 438321950
+      nfiles: 7
+    - path: external/table_repo/exp1/bert-base-uncased_finetune_1_lr_2e-05_schedule_linear_schedule_with_warmup_epoch_10_feature_edit-original_extra_0_seed_1
+      md5: 74b5d308a32f32ea1ae145e5a011e0fb.dir
+      size: 438322019
+      nfiles: 7
+    - path: external/table_repo/exp1/bert-base-uncased_finetune_1_lr_5e-05_schedule_linear_schedule_with_warmup_epoch_3_feature_edit-context_extra_0_seed_1
+      md5: cf352411174fba2b5d1ed13ec24e18f8.dir
+      size: 438308403
+      nfiles: 7
+    - path: external/table_repo/exp1/bert-base-uncased_finetune_1_lr_5e-05_schedule_linear_schedule_with_warmup_epoch_3_feature_edit-original_extra_1_seed_1
+      md5: 11ffed4b1cde2583113a6d65e36da45f.dir
+      size: 438308437
+      nfiles: 7
