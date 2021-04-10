@@ -54,7 +54,7 @@ stages:
       md5: 335fc57b3b51a9738eecd4200e1e4950.dir
       size: 21416930
       nfiles: 7
-      
+
   reproduce_table_task_1_bert:
     cmd: cd external/table_repo && docker-compose up --build task_1_bert
     deps:
@@ -109,7 +109,7 @@ stages:
       md5: 11ffed4b1cde2583113a6d65e36da45f.dir
       size: 438308437
       nfiles: 7
-      
+
   reproduce_table_task_1_roberta:
     cmd: cd external/table_repo && docker-compose up --build task_1_roberta
     deps:
@@ -164,7 +164,7 @@ stages:
       md5: 6413f72d40113ea91c0f998d5d3bc341.dir
       size: 498975599
       nfiles: 7
-      
+
   reproduce_table_task_2_cbow:
     cmd: cd external/table_repo && docker-compose up --build task_2_cbow
     deps:
@@ -219,7 +219,7 @@ stages:
       md5: 9a269fcb0ad7f67a7cf4886d5d338c3c.dir
       size: 21711466
       nfiles: 7
-      
+
   reproduce_table_task_2_bert:
     cmd: cd external/table_repo && docker-compose up --build task_2_bert
     deps:
@@ -274,7 +274,7 @@ stages:
       md5: dea430a67905ce679ba453eeb24b16a3.dir
       size: 438627179
       nfiles: 7
-      
+
   reproduce_table_task_2_roberta:
     cmd: cd external/table_repo && docker-compose up --build task_2_roberta
     deps:
@@ -330,3 +330,301 @@ stages:
       size: 499280880
       nfiles: 7
 
+  format_table:
+    cmd: python3 laughing_net/postprocessing/format_table.py
+    deps:
+    - path: external/table_repo/exp1/bert-base-uncased_finetune_0_lr_0.0003_schedule_none_epoch_10_feature_edit-context_extra_1_seed_1/metrics.json
+      md5: 28dd47b372ca779244a5f294b6c809fb
+      size: 176
+    - path: external/table_repo/exp1/bert-base-uncased_finetune_0_lr_0.0003_schedule_none_epoch_10_feature_edit-context_extra_1_seed_1/params.json
+      md5: 73d1d57e157583e8f212ba80c94241c8
+      size: 318
+    - path: external/table_repo/exp1/bert-base-uncased_finetune_0_lr_0.001_schedule_none_epoch_10_feature_edit-context_extra_0_seed_1/metrics.json
+      md5: 23dbefd7da950e75a4cb257f065bd867
+      size: 177
+    - path: external/table_repo/exp1/bert-base-uncased_finetune_0_lr_0.001_schedule_none_epoch_10_feature_edit-context_extra_0_seed_1/params.json
+      md5: febea3ead5d6832d96c5f75c4d6f746d
+      size: 317
+    - path: external/table_repo/exp1/bert-base-uncased_finetune_0_lr_0.001_schedule_none_epoch_10_feature_edit-original_extra_0_seed_1/metrics.json
+      md5: 6c898a44f08a4ce40e0a8c236db14928
+      size: 176
+    - path: external/table_repo/exp1/bert-base-uncased_finetune_0_lr_0.001_schedule_none_epoch_10_feature_edit-original_extra_0_seed_1/params.json
+      md5: 6be35f67b2ec714748ce8598e79d6d56
+      size: 318
+    - path: external/table_repo/exp1/bert-base-uncased_finetune_0_lr_0.001_schedule_none_epoch_10_feature_edit-original_extra_1_seed_1/metrics.json
+      md5: 5985a82e402fb932524fd4daa675564a
+      size: 177
+    - path: external/table_repo/exp1/bert-base-uncased_finetune_0_lr_0.001_schedule_none_epoch_10_feature_edit-original_extra_1_seed_1/params.json
+      md5: 3186b3bf1ba09ca51ad3c3dd461afe72
+      size: 318
+    - path: external/table_repo/exp1/bert-base-uncased_finetune_1_lr_2e-05_schedule_linear_schedule_with_warmup_epoch_10_feature_edit-context_extra_1_seed_1/metrics.json
+      md5: d4a29f786040eed31b0f52d991ce88b2
+      size: 177
+    - path: external/table_repo/exp1/bert-base-uncased_finetune_1_lr_2e-05_schedule_linear_schedule_with_warmup_epoch_10_feature_edit-context_extra_1_seed_1/params.json
+      md5: ecbf494d0d6a61bf92318ac4c745d00c
+      size: 340
+    - path: external/table_repo/exp1/bert-base-uncased_finetune_1_lr_2e-05_schedule_linear_schedule_with_warmup_epoch_10_feature_edit-original_extra_0_seed_1/metrics.json
+      md5: b7227bca8c87fbef71ee616bf43000ed
+      size: 176
+    - path: external/table_repo/exp1/bert-base-uncased_finetune_1_lr_2e-05_schedule_linear_schedule_with_warmup_epoch_10_feature_edit-original_extra_0_seed_1/params.json
+      md5: 5417f3a0ec1da0ee595669343763ec2e
+      size: 341
+    - path: external/table_repo/exp1/bert-base-uncased_finetune_1_lr_5e-05_schedule_linear_schedule_with_warmup_epoch_3_feature_edit-context_extra_0_seed_1/metrics.json
+      md5: 24a337bf916c0701517c0a8d7823ddc1
+      size: 176
+    - path: external/table_repo/exp1/bert-base-uncased_finetune_1_lr_5e-05_schedule_linear_schedule_with_warmup_epoch_3_feature_edit-context_extra_0_seed_1/params.json
+      md5: 72ff7daff1b80b3044f1494b66cc711e
+      size: 339
+    - path: external/table_repo/exp1/bert-base-uncased_finetune_1_lr_5e-05_schedule_linear_schedule_with_warmup_epoch_3_feature_edit-original_extra_1_seed_1/metrics.json
+      md5: 5e6e809bae71e2549d418ce2ea04d563
+      size: 177
+    - path: external/table_repo/exp1/bert-base-uncased_finetune_1_lr_5e-05_schedule_linear_schedule_with_warmup_epoch_3_feature_edit-original_extra_1_seed_1/params.json
+      md5: 926e64ac9f7f4f269c3014ba1f9f5af0
+      size: 340
+    - path: external/table_repo/exp1/cbow_finetune_0_lr_0.0003_schedule_none_epoch_10_feature_edit-context_extra_0_seed_1/metrics.json
+      md5: d81f6e393fbe5c202b7f63c919a0a576
+      size: 175
+    - path: external/table_repo/exp1/cbow_finetune_0_lr_0.0003_schedule_none_epoch_10_feature_edit-context_extra_0_seed_1/params.json
+      md5: ab52b9449333156b1667b735eb8250fc
+      size: 311
+    - path: external/table_repo/exp1/cbow_finetune_0_lr_0.0003_schedule_none_epoch_10_feature_edit-original_extra_0_seed_1/metrics.json
+      md5: f951fa341b37eb519ec71bb35ef9a57f
+      size: 177
+    - path: external/table_repo/exp1/cbow_finetune_0_lr_0.0003_schedule_none_epoch_10_feature_edit-original_extra_0_seed_1/params.json
+      md5: 960f4c297f1ab0e02bd67c0d4eb9fa00
+      size: 312
+    - path: external/table_repo/exp1/cbow_finetune_0_lr_0.0003_schedule_none_epoch_10_feature_edit-original_extra_1_seed_1/metrics.json
+      md5: 73f4e86d7ac51745376a3f45ba90e586
+      size: 177
+    - path: external/table_repo/exp1/cbow_finetune_0_lr_0.0003_schedule_none_epoch_10_feature_edit-original_extra_1_seed_1/params.json
+      md5: 0c47bf4d411439c4dd6de79e67457f85
+      size: 312
+    - path: external/table_repo/exp1/cbow_finetune_0_lr_0.001_schedule_none_epoch_10_feature_edit-context_extra_1_seed_1/metrics.json
+      md5: a8b81aea577be30aed5b329a00702ea6
+      size: 176
+    - path: external/table_repo/exp1/cbow_finetune_0_lr_0.001_schedule_none_epoch_10_feature_edit-context_extra_1_seed_1/params.json
+      md5: 3f88a7b8e15338dd7ff98606a9fe514b
+      size: 310
+    - path: external/table_repo/exp1/cbow_finetune_1_lr_0.0003_schedule_none_epoch_10_feature_edit-context_extra_0_seed_1/metrics.json
+      md5: 2a13557ff2302626c538953a9d0bd75a
+      size: 175
+    - path: external/table_repo/exp1/cbow_finetune_1_lr_0.0003_schedule_none_epoch_10_feature_edit-context_extra_0_seed_1/params.json
+      md5: e1b7f5f9f38c09e461c0be91818ba3eb
+      size: 311
+    - path: external/table_repo/exp1/cbow_finetune_1_lr_0.0003_schedule_none_epoch_10_feature_edit-context_extra_1_seed_1/metrics.json
+      md5: aaefd9c409bffb555db1640bcc55c517
+      size: 176
+    - path: external/table_repo/exp1/cbow_finetune_1_lr_0.0003_schedule_none_epoch_10_feature_edit-context_extra_1_seed_1/params.json
+      md5: bf77d91acac5d637a6e1ee2e129cf898
+      size: 311
+    - path: external/table_repo/exp1/cbow_finetune_1_lr_0.001_schedule_none_epoch_10_feature_edit-original_extra_0_seed_1/metrics.json
+      md5: 8dfabcbb0ddda7805ae0514e3064dbd5
+      size: 177
+    - path: external/table_repo/exp1/cbow_finetune_1_lr_0.001_schedule_none_epoch_10_feature_edit-original_extra_0_seed_1/params.json
+      md5: cbf19d27b3347e6eab2f98466f91a18c
+      size: 311
+    - path: external/table_repo/exp1/cbow_finetune_1_lr_0.001_schedule_none_epoch_10_feature_edit-original_extra_1_seed_1/metrics.json
+      md5: 092fcb75027b3fbe82ba9662a68c40f8
+      size: 175
+    - path: external/table_repo/exp1/cbow_finetune_1_lr_0.001_schedule_none_epoch_10_feature_edit-original_extra_1_seed_1/params.json
+      md5: 1a07ec25f314b94543e146f73bf032b1
+      size: 311
+    - path: external/table_repo/exp1/roberta-base_finetune_0_lr_0.0003_schedule_none_epoch_10_feature_edit-context_extra_0_seed_1/metrics.json
+      md5: 34a7c54782b6986fae28f5c68a77727f
+      size: 177
+    - path: external/table_repo/exp1/roberta-base_finetune_0_lr_0.0003_schedule_none_epoch_10_feature_edit-context_extra_0_seed_1/params.json
+      md5: a2db0b487f03c837fe485ca1b4c97a5d
+      size: 313
+    - path: external/table_repo/exp1/roberta-base_finetune_0_lr_0.0003_schedule_none_epoch_10_feature_edit-context_extra_1_seed_1/metrics.json
+      md5: 3a4d1dd13a2a49275a0a050569a51bcc
+      size: 176
+    - path: external/table_repo/exp1/roberta-base_finetune_0_lr_0.0003_schedule_none_epoch_10_feature_edit-context_extra_1_seed_1/params.json
+      md5: 3119c09b35c024c20b317c05ceb418f3
+      size: 313
+    - path: external/table_repo/exp1/roberta-base_finetune_0_lr_0.0003_schedule_none_epoch_10_feature_edit-original_extra_0_seed_1/metrics.json
+      md5: 81d421c3710e3fe8099a56b564c5e371
+      size: 177
+    - path: external/table_repo/exp1/roberta-base_finetune_0_lr_0.0003_schedule_none_epoch_10_feature_edit-original_extra_0_seed_1/params.json
+      md5: c9baf4ccc21308d3d8c14b607807221e
+      size: 314
+    - path: external/table_repo/exp1/roberta-base_finetune_0_lr_0.0003_schedule_none_epoch_10_feature_edit-original_extra_1_seed_1/metrics.json
+      md5: 121c34cbd5441e85af597fffa27bdf65
+      size: 175
+    - path: external/table_repo/exp1/roberta-base_finetune_0_lr_0.0003_schedule_none_epoch_10_feature_edit-original_extra_1_seed_1/params.json
+      md5: 16ab65e5b754f98ac203a8c6dba3d75e
+      size: 314
+    - path: external/table_repo/exp1/roberta-base_finetune_1_lr_2e-05_schedule_linear_schedule_with_warmup_epoch_10_feature_edit-context_extra_1_seed_1/metrics.json
+      md5: e4e8e7ad72959ac29786737f9c94a623
+      size: 175
+    - path: external/table_repo/exp1/roberta-base_finetune_1_lr_2e-05_schedule_linear_schedule_with_warmup_epoch_10_feature_edit-context_extra_1_seed_1/params.json
+      md5: a77f498de3be045e57997a203265341b
+      size: 335
+    - path: external/table_repo/exp1/roberta-base_finetune_1_lr_2e-05_schedule_linear_schedule_with_warmup_epoch_10_feature_edit-original_extra_0_seed_1/metrics.json
+      md5: cfff020b68d135b04282ef9687bcebd7
+      size: 177
+    - path: external/table_repo/exp1/roberta-base_finetune_1_lr_2e-05_schedule_linear_schedule_with_warmup_epoch_10_feature_edit-original_extra_0_seed_1/params.json
+      md5: 701ec79cb3a775f1dde59e179bd8e087
+      size: 336
+    - path: external/table_repo/exp1/roberta-base_finetune_1_lr_2e-05_schedule_linear_schedule_with_warmup_epoch_3_feature_edit-original_extra_1_seed_1/metrics.json
+      md5: a200e343d63e7a72d93147f9bfd116f9
+      size: 175
+    - path: external/table_repo/exp1/roberta-base_finetune_1_lr_2e-05_schedule_linear_schedule_with_warmup_epoch_3_feature_edit-original_extra_1_seed_1/params.json
+      md5: 9a96ebce53b87299db60cf310334757b
+      size: 335
+    - path: external/table_repo/exp1/roberta-base_finetune_1_lr_2e-05_schedule_none_epoch_10_feature_edit-context_extra_0_seed_1/metrics.json
+      md5: 838260deb082474afe34208723437bfb
+      size: 176
+    - path: external/table_repo/exp1/roberta-base_finetune_1_lr_2e-05_schedule_none_epoch_10_feature_edit-context_extra_0_seed_1/params.json
+      md5: 75d1dd552d034a5c56f9ef4b85fe8e2d
+      size: 312
+    - path: external/table_repo/exp2/bert-base-uncased_finetune_0_lr_0.0003_schedule_none_epoch_10_feature_edit-original_extra_0_seed_1/metrics.json
+      md5: deb1b922ad3a3cbf00e1db42397d7601
+      size: 134
+    - path: external/table_repo/exp2/bert-base-uncased_finetune_0_lr_0.0003_schedule_none_epoch_10_feature_edit-original_extra_0_seed_1/params.json
+      md5: aca69b50616d3149dc7b612c682f8457
+      size: 319
+    - path: external/table_repo/exp2/bert-base-uncased_finetune_0_lr_0.001_schedule_none_epoch_10_feature_edit-context_extra_0_seed_1/metrics.json
+      md5: b2d2c4e6989e59f77f4a791004843668
+      size: 135
+    - path: external/table_repo/exp2/bert-base-uncased_finetune_0_lr_0.001_schedule_none_epoch_10_feature_edit-context_extra_0_seed_1/params.json
+      md5: 549a2f4a83364bbc7d8bde816a54d94e
+      size: 317
+    - path: external/table_repo/exp2/bert-base-uncased_finetune_0_lr_0.001_schedule_none_epoch_10_feature_edit-context_extra_1_seed_1/metrics.json
+      md5: 5bda6ff4ff3139db6f3ae0f1194e8ec5
+      size: 134
+    - path: external/table_repo/exp2/bert-base-uncased_finetune_0_lr_0.001_schedule_none_epoch_10_feature_edit-context_extra_1_seed_1/params.json
+      md5: 9d01ae61dd48603ac330f0ca31ffcb40
+      size: 317
+    - path: external/table_repo/exp2/bert-base-uncased_finetune_0_lr_0.001_schedule_none_epoch_10_feature_edit-original_extra_1_seed_1/metrics.json
+      md5: 247c2b1abdee0c1fef1b757f7f27a2f5
+      size: 135
+    - path: external/table_repo/exp2/bert-base-uncased_finetune_0_lr_0.001_schedule_none_epoch_10_feature_edit-original_extra_1_seed_1/params.json
+      md5: a68a8d918f57521d48aaf272b02ca444
+      size: 318
+    - path: external/table_repo/exp2/bert-base-uncased_finetune_1_lr_2e-05_schedule_none_epoch_10_feature_edit-context_extra_1_seed_1/metrics.json
+      md5: 66b32002266acb0b9d5ba18c46659c70
+      size: 134
+    - path: external/table_repo/exp2/bert-base-uncased_finetune_1_lr_2e-05_schedule_none_epoch_10_feature_edit-context_extra_1_seed_1/params.json
+      md5: 3fb3eff797d2698839f9fb1f2385b816
+      size: 317
+    - path: external/table_repo/exp2/bert-base-uncased_finetune_1_lr_2e-05_schedule_none_epoch_10_feature_edit-original_extra_1_seed_1/metrics.json
+      md5: 28987cc54128f5948b86f19804fc2818
+      size: 134
+    - path: external/table_repo/exp2/bert-base-uncased_finetune_1_lr_2e-05_schedule_none_epoch_10_feature_edit-original_extra_1_seed_1/params.json
+      md5: 93759efdac483e67948be2664b1344ab
+      size: 318
+    - path: external/table_repo/exp2/bert-base-uncased_finetune_1_lr_5e-05_schedule_none_epoch_10_feature_edit-context_extra_0_seed_1/metrics.json
+      md5: 438b081e67bde7456a670a51acd43a99
+      size: 134
+    - path: external/table_repo/exp2/bert-base-uncased_finetune_1_lr_5e-05_schedule_none_epoch_10_feature_edit-context_extra_0_seed_1/params.json
+      md5: 2773fcca1a49539447e5688a1ceb9eba
+      size: 317
+    - path: external/table_repo/exp2/bert-base-uncased_finetune_1_lr_5e-05_schedule_none_epoch_10_feature_edit-original_extra_0_seed_1/metrics.json
+      md5: 8fcea4bb283b94f38673189d76307207
+      size: 135
+    - path: external/table_repo/exp2/bert-base-uncased_finetune_1_lr_5e-05_schedule_none_epoch_10_feature_edit-original_extra_0_seed_1/params.json
+      md5: adbb2a28a8b6053c9bab7482970a8b3a
+      size: 318
+    - path: external/table_repo/exp2/cbow_finetune_0_lr_0.0003_schedule_none_epoch_10_feature_edit-context_extra_1_seed_1/metrics.json
+      md5: 8b5ad26e5c030c2a4c3f51170303acbe
+      size: 135
+    - path: external/table_repo/exp2/cbow_finetune_0_lr_0.0003_schedule_none_epoch_10_feature_edit-context_extra_1_seed_1/params.json
+      md5: d2a1c67d6b3ee8dee5af5d7364541040
+      size: 311
+    - path: external/table_repo/exp2/cbow_finetune_0_lr_0.001_schedule_none_epoch_10_feature_edit-context_extra_0_seed_1/metrics.json
+      md5: 34d80416f6cc788c2a36d2520ac4cf66
+      size: 134
+    - path: external/table_repo/exp2/cbow_finetune_0_lr_0.001_schedule_none_epoch_10_feature_edit-context_extra_0_seed_1/params.json
+      md5: 9ca819ea6d80419128b703cf22862e50
+      size: 310
+    - path: external/table_repo/exp2/cbow_finetune_0_lr_0.001_schedule_none_epoch_10_feature_edit-original_extra_0_seed_1/metrics.json
+      md5: dc793bc9c4d62cbecc355330839bf04c
+      size: 135
+    - path: external/table_repo/exp2/cbow_finetune_0_lr_0.001_schedule_none_epoch_10_feature_edit-original_extra_0_seed_1/params.json
+      md5: 4292d8949f1c7eb42710d5f1b41ac2be
+      size: 311
+    - path: external/table_repo/exp2/cbow_finetune_0_lr_0.001_schedule_none_epoch_10_feature_edit-original_extra_1_seed_1/metrics.json
+      md5: a12c8398e797ab82ed43d82073d928f3
+      size: 135
+    - path: external/table_repo/exp2/cbow_finetune_0_lr_0.001_schedule_none_epoch_10_feature_edit-original_extra_1_seed_1/params.json
+      md5: 264ee804bdf0ce08c5605a6741f970cd
+      size: 311
+    - path: external/table_repo/exp2/cbow_finetune_1_lr_0.0003_schedule_none_epoch_10_feature_edit-context_extra_0_seed_1/metrics.json
+      md5: 9f1010af1f10ed505d27a4f26cb8ed81
+      size: 134
+    - path: external/table_repo/exp2/cbow_finetune_1_lr_0.0003_schedule_none_epoch_10_feature_edit-context_extra_0_seed_1/params.json
+      md5: 6fa508f349d8512e52223faf32a82782
+      size: 311
+    - path: external/table_repo/exp2/cbow_finetune_1_lr_0.0003_schedule_none_epoch_10_feature_edit-context_extra_1_seed_1/metrics.json
+      md5: 9eb6afc7a9a92722234c74eb42bccf5d
+      size: 134
+    - path: external/table_repo/exp2/cbow_finetune_1_lr_0.0003_schedule_none_epoch_10_feature_edit-context_extra_1_seed_1/params.json
+      md5: d9b1a678434a0d97a4a37d925e8362d7
+      size: 311
+    - path: external/table_repo/exp2/cbow_finetune_1_lr_0.0003_schedule_none_epoch_10_feature_edit-original_extra_0_seed_1/metrics.json
+      md5: 290711351c3feb363025629e08cfa5eb
+      size: 135
+    - path: external/table_repo/exp2/cbow_finetune_1_lr_0.0003_schedule_none_epoch_10_feature_edit-original_extra_0_seed_1/params.json
+      md5: 9384aac05d46368936472ff93416760a
+      size: 312
+    - path: external/table_repo/exp2/cbow_finetune_1_lr_0.0003_schedule_none_epoch_10_feature_edit-original_extra_1_seed_1/metrics.json
+      md5: b138c865a98fc59668b88a36e16bd877
+      size: 133
+    - path: external/table_repo/exp2/cbow_finetune_1_lr_0.0003_schedule_none_epoch_10_feature_edit-original_extra_1_seed_1/params.json
+      md5: 6729bba570de550ee0fd041706005b83
+      size: 312
+    - path: external/table_repo/exp2/roberta-base_finetune_0_lr_0.0003_schedule_none_epoch_10_feature_edit-context_extra_0_seed_1/metrics.json
+      md5: 44408d298b2fd7c8e70865a72cb1880c
+      size: 135
+    - path: external/table_repo/exp2/roberta-base_finetune_0_lr_0.0003_schedule_none_epoch_10_feature_edit-context_extra_0_seed_1/params.json
+      md5: bbc869cbd2383402fb162b87a895e2fa
+      size: 313
+    - path: external/table_repo/exp2/roberta-base_finetune_0_lr_0.0003_schedule_none_epoch_10_feature_edit-original_extra_0_seed_1/metrics.json
+      md5: 23677a45c94fac55dc3160a702f58bf6
+      size: 134
+    - path: external/table_repo/exp2/roberta-base_finetune_0_lr_0.0003_schedule_none_epoch_10_feature_edit-original_extra_0_seed_1/params.json
+      md5: 5cdcfca93b6a78c9b78572b1d2185141
+      size: 314
+    - path: external/table_repo/exp2/roberta-base_finetune_0_lr_0.0003_schedule_none_epoch_10_feature_edit-original_extra_1_seed_1/metrics.json
+      md5: 9182ea8355ff2195700402898bb14503
+      size: 135
+    - path: external/table_repo/exp2/roberta-base_finetune_0_lr_0.0003_schedule_none_epoch_10_feature_edit-original_extra_1_seed_1/params.json
+      md5: 49a5df5c8f7becfeca72976fa0058dc1
+      size: 314
+    - path: external/table_repo/exp2/roberta-base_finetune_0_lr_0.001_schedule_none_epoch_10_feature_edit-context_extra_1_seed_1/metrics.json
+      md5: 4985eee6a86485ff59001ca0f9796f20
+      size: 135
+    - path: external/table_repo/exp2/roberta-base_finetune_0_lr_0.001_schedule_none_epoch_10_feature_edit-context_extra_1_seed_1/params.json
+      md5: 93415e0abe789e5efab233e0da5cb4e0
+      size: 312
+    - path: external/table_repo/exp2/roberta-base_finetune_1_lr_2e-05_schedule_linear_schedule_with_warmup_epoch_3_feature_edit-context_extra_0_seed_1/metrics.json
+      md5: 0dbacd71d1d420d79bc6210ff4ca3b40
+      size: 135
+    - path: external/table_repo/exp2/roberta-base_finetune_1_lr_2e-05_schedule_linear_schedule_with_warmup_epoch_3_feature_edit-context_extra_0_seed_1/params.json
+      md5: f2eb4b0500bcdb6f8781734d905a2271
+      size: 334
+    - path: external/table_repo/exp2/roberta-base_finetune_1_lr_2e-05_schedule_linear_schedule_with_warmup_epoch_3_feature_edit-original_extra_0_seed_1/metrics.json
+      md5: 8e24838c09164ec4ae69f9dc9022067b
+      size: 135
+    - path: external/table_repo/exp2/roberta-base_finetune_1_lr_2e-05_schedule_linear_schedule_with_warmup_epoch_3_feature_edit-original_extra_0_seed_1/params.json
+      md5: 5c0d2b93ff60dd42691ba8535bed62d5
+      size: 335
+    - path: external/table_repo/exp2/roberta-base_finetune_1_lr_2e-05_schedule_none_epoch_10_feature_edit-context_extra_1_seed_1/metrics.json
+      md5: 421486061763d06af0b39529b4d7a1e1
+      size: 135
+    - path: external/table_repo/exp2/roberta-base_finetune_1_lr_2e-05_schedule_none_epoch_10_feature_edit-context_extra_1_seed_1/params.json
+      md5: 0533fbb25b652e007e7736ec7d48d36e
+      size: 312
+    - path: external/table_repo/exp2/roberta-base_finetune_1_lr_5e-05_schedule_none_epoch_10_feature_edit-original_extra_1_seed_1/metrics.json
+      md5: aec9cf13facc670e44d4457e61c3b1fb
+      size: 134
+    - path: external/table_repo/exp2/roberta-base_finetune_1_lr_5e-05_schedule_none_epoch_10_feature_edit-original_extra_1_seed_1/params.json
+      md5: d2d14021e80dfc746319a1a189ba5110
+      size: 313
+    - path: laughing_net/postprocessing/format_table.py
+      md5: 0172dfc2844100b840ef4774a1b51734
+      size: 1632
+    outs:
+    - path: outputs/table.csv
+      md5: 262bfdc07ee600e9c871627027938a01
+      size: 1045
