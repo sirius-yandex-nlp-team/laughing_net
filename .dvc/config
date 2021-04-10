@@ -1,2 +1,6 @@
 [core]
     autostage = true
+    remote = yandexcloud
+['remote "yandexcloud"']
+    url = s3://sirius-yandex-laughing-net-artifact-registry/laughing-net
+    endpointurl = https://storage.yandexcloud.net
