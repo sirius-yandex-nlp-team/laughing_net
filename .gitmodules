@@ -1,0 +1,3 @@
+[submodule "external/table_repo"]
+	path = external/table_repo
+	url = https://github.com/sirius-yandex-nlp-team/SemEval-2020-Task-7
