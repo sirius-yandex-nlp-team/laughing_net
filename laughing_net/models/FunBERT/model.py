@@ -24,12 +24,10 @@ class FunBERT(pl.LightningModule):
         super(FunBERT, self).__init__()
 
         if model_type == 'roberta':
-            self.model = RobertaModel.from_pretrained(
-                'roberta-base', output_hidden_states=True)
+            self.model = RobertaModel.from_pretrained('roberta-base', output_hidden_states=True)
             self.tokenizer = RobertaTokenizer.from_pretrained('roberta-base')
         elif model_type == 'bert':
-            self.model = BertModel.from_pretrained(
-                'bert-base-uncased', output_hidden_states=True)
+            self.model = BertModel.from_pretrained('bert-base-uncased', output_hidden_states=True)
             self.tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
 
         self.lr = lr
