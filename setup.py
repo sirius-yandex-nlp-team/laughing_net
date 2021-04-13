@@ -17,8 +17,6 @@ setuptools.setup(
         'gensim',
         'spacy',
         'python-box',
-        'scikit-learn',
-        'keras-preprocessing',
         'pandas',
         'click'
     ],

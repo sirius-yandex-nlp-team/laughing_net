@@ -7,11 +7,14 @@ data:
       dev: 'data/raw/task-1/dev.csv'
       test: 'data/raw/task-1/test.csv'
       lm: 'data/raw/task-1/shortjokes2.csv'
+      funlines: 'data/raw/task_1/train_funlines.csv'
     task_2:
       train: 'data/raw/task-2/train.csv'
       dev: 'data/raw/task-2/dev.csv'
       test: 'data/raw/task-2/test.csv'
       lm: 'data/raw/task-2/shortjokes2.csv'
+  train_batch_size: 64
+  test_batch_size: 16
 models:
   FunBERT:
     word2vec: false
