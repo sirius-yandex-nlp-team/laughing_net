@@ -17,4 +17,5 @@ class DVCLiveCompatibleModelCheckpoint(ModelCheckpoint):
 
 class DVCLiveNextStepCallback(Callback):
     def on_epoch_end(self, trainer, pl_module):
-        dvclive.next_step()
+        # dvclive.next_step()
+        pass

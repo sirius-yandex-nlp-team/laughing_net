@@ -7,7 +7,7 @@ from torch.nn.utils.rnn import pad_sequence
 from torch.utils.data import RandomSampler, SequentialSampler
 from transformers import RobertaTokenizer, BertTokenizer
 
-from laughing_net.config import params
+from laughing_net.config import config, params
 from laughing_net.context import ctx
 
 
@@ -31,8 +31,7 @@ class FunDataset:
             sentence = f"[CLS] {sentence} [CLS]"
 
         tokenized_text = self.tokenizer.tokenize(sentence)
-
-        sentence = self.tokenizer.convert_tokens_to_ids(sentence)
+        sentence = self.tokenizer.convert_tokens_to_ids(tokenized_text)
 
         if self.model_type == 'bert':
             if org:
@@ -66,19 +65,19 @@ class FunDataset:
         out['original_seq'], entity_locs1 = self.__tokenize(original_seq, True)
         out['edited_seq'], entity_locs2 = self.__tokenize(edited_seq, False)
 
-        out['entity_locs'] = np.concatenate((entity_locs1, entity_locs2), 1)
+        out['entity_locs'] = np.concatenate((entity_locs1, entity_locs2))
 
         if self.kind == "train":
             out['target'] = item['meanGrade']
 
         if self.kind == "val":
             out['target'] = item['meanGrade']
-            out['id'] = item['id']
+            # out['id'] = item['id']
 
         if self.kind == "test":
             out['id'] = item['id']
 
-        return item
+        return out
 
     def __len__(self):
         return len(self.present_indices)
@@ -88,8 +87,7 @@ class FunDataset:
 
     def __pad_and_pack(self, sequence):
         sequence = list(map(torch.tensor, sequence))
-        sequence = pad_sequence(
-            sequence, batch_first=True, padding_value=self.tokenizer.pad_token_id)
+        sequence = pad_sequence(sequence, batch_first=True, padding_value=self.tokenizer.pad_token_id)
         return sequence
 
     def collate_fn(self, items):
@@ -139,6 +137,7 @@ class FunDataModule(pl.LightningDataModule):
         return DataLoader(
             dataset=self.train_dataset,
             sampler=sampler,
+            num_workers=config.resources.num_workers,
             batch_size=params.data.train_batch_size,
             collate_fn=self.train_dataset.collate_fn,
         )
@@ -157,6 +156,7 @@ class FunDataModule(pl.LightningDataModule):
         return DataLoader(
             dataset=self.val_dataset,
             sampler=sampler,
+            num_workers=config.resources.num_workers,
             batch_size=params.data.train_batch_size,
             collate_fn=self.val_dataset.collate_fn,
         )
@@ -175,6 +175,7 @@ class FunDataModule(pl.LightningDataModule):
         return DataLoader(
             dataset=self.test_dataset,
             sampler=sampler,
+            num_workers=config.resources.num_workers,
             batch_size=params.data.test_batch_size,
             collate_fn=self.test_dataset.collate_fn
         )

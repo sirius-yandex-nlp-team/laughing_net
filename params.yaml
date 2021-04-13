@@ -3,16 +3,16 @@ data:
   zip_file: semeval-2020-task-7-dataset.zip
   raw:
     task_1:
-      train: 'data/raw/task-1/train.csv'
-      dev: 'data/raw/task-1/dev.csv'
-      test: 'data/raw/task-1/test.csv'
-      lm: 'data/raw/task-1/shortjokes2.csv'
-      funlines: 'data/raw/task_1/train_funlines.csv'
+      train: 'raw/task-1/train.csv'
+      val: 'raw/task-1/dev.csv'
+      test: 'raw/task-1/test.csv'
+      lm: 'raw/task-1/shortjokes2.csv'
+      funlines: 'raw/task-1/train_funlines.csv'
     task_2:
-      train: 'data/raw/task-2/train.csv'
-      dev: 'data/raw/task-2/dev.csv'
-      test: 'data/raw/task-2/test.csv'
-      lm: 'data/raw/task-2/shortjokes2.csv'
+      train: 'raw/task-2/train.csv'
+      val: 'raw/task-2/dev.csv'
+      test: 'raw/task-2/test.csv'
+      lm: 'raw/task-2/shortjokes2.csv'
   train_batch_size: 64
   test_batch_size: 16
 models:

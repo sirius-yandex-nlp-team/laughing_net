@@ -76,15 +76,12 @@ class FunBERT(pl.LightningModule):
         '''
 
         attn_mask0 = (original_seq != self.tokenizer.pad_token_id).long()
-        output_per_seq1, _, attention_layer_inps = self.model(
-            original_seq.long(), attention_mask=attn_mask0)
-        output_per_seq1 = torch.cat(
-            (output_per_seq1, attention_layer_inps[11]), 2)
+        output_per_seq1, _, attention_layer_inps = self.model(original_seq.long(), attention_mask=attn_mask0).values()
+        output_per_seq1 = torch.cat((output_per_seq1, attention_layer_inps[11]), 2)
+
         attn_mask1 = (edited_seq != self.tokenizer.pad_token_id).long()
-        output_per_seq2, _, attention_layer_inps = self.model(
-            edited_seq.long(), attention_mask=attn_mask1)
-        output_per_seq2 = torch.cat(
-            (output_per_seq2, attention_layer_inps[11]))
+        output_per_seq2, _, attention_layer_inps = self.model(edited_seq.long(), attention_mask=attn_mask1).values()
+        output_per_seq2 = torch.cat((output_per_seq2, attention_layer_inps[11]), 2)
 
         final_scores = []
         for (i, loc) in enumerate(ent_locs):
@@ -92,26 +89,23 @@ class FunBERT(pl.LightningModule):
             entity1 = torch.mean(output_per_seq1[i, loc[0] + 1:loc[1]], 0)
             entity2 = torch.mean(output_per_seq2[i, loc[2] + 1:loc[3]], 0)
 
-            imp_seq1 = torch.cat(
-                (output_per_seq1[i, 0:loc[0] + 1], output_per_seq1[i, loc[1]:]), 0)
-            imp_seq2 = torch.cat(
-                (output_per_seq2[i, 0:loc[2] + 1], output_per_seq2[i, loc[3]:]), 0)
-            _, attention_score = self.attention(
-                entity2.unsqueeze(0).unsqueeze(0), imp_seq2.unsqueeze(0))
-            sent_attn = torch.sum(attention_score.squeeze(
-                0).expand(768 * 2, -1).t() * imp_seq2, 0)
-            _, attention_score1 = self.attention(
-                entity1.unsqueeze(0).unsqueeze(0), imp_seq1.unsqueeze(0))
-            sent_attn1 = torch.sum(attention_score1.squeeze(
-                0).expand(768 * 2, -1).t() * imp_seq1, 0)
-            sent_out = self.prelu(self.linear_reg1(
-                torch.cat((sent_attn, sent_attn1, output_per_seq2[i, 0], entity2), 0)))
+            imp_seq1 = torch.cat((output_per_seq1[i, 0:loc[0] + 1], output_per_seq1[i, loc[1]:]), 0)
+            imp_seq2 = torch.cat((output_per_seq2[i, 0:loc[2] + 1], output_per_seq2[i, loc[3]:]), 0)
+
+            _, attention_score = self.attention(entity2.unsqueeze(0).unsqueeze(0), imp_seq2.unsqueeze(0))
+            sent_attn = torch.sum(attention_score.squeeze(0).expand(768 * 2, -1).t() * imp_seq2, 0)
+
+            _, attention_score1 = self.attention(entity1.unsqueeze(0).unsqueeze(0), imp_seq1.unsqueeze(0))
+            sent_attn1 = torch.sum(attention_score1.squeeze(0).expand(768 * 2, -1).t() * imp_seq1, 0)
+
+            sent_out = self.prelu(self.linear_reg1(torch.cat((sent_attn, sent_attn1, output_per_seq2[i, 0], entity2), 0)))
             final_out = self.final_linear(sent_out)
+
             final_scores.append(final_out)
 
         return torch.stack((final_scores))
 
-    def training_step(self, batch: Dict) -> Dict:
+    def training_step(self, batch: Dict, batch_idx: int) -> Dict:
         ''' 
         Step of the training loop
 
@@ -121,6 +115,9 @@ class FunBERT(pl.LightningModule):
             + `edited_seq` - The sentance with edited word (joke)
             + `entity_locs` - The entity locations
             + `target` - Vector of truth humor score
+
+            batch_idx (`int`)
+                Index of a batch
 
         Returns:
             `Dict`
@@ -160,7 +157,7 @@ class FunBERT(pl.LightningModule):
 
         return
 
-    def validation_step(self, batch: Dict) -> Dict:
+    def validation_step(self, batch: Dict, batch_idx: int) -> Dict:
         ''' 
         Step of the validation loop
 
@@ -170,6 +167,13 @@ class FunBERT(pl.LightningModule):
             + `edited_seq` - The sentance with edited word (joke)
             + `entity_locs` - The entity locations
             + `target` - Vector of truth humor score
+
+            batch_idx (`int`)
+                Index of a batch
+
+        Returns:
+            `Dict`
+                Validation loss
         '''
 
         original_seq = batch['original_seq']

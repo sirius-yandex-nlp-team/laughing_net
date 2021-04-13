@@ -1,6 +1,7 @@
 neptune:
   api_token: !env NEPTUNE_API_TOKEN
-  project_name: "konodyuk/sirius-yandex-laughing-net"
+  project_name: "wibbn/humor"
   funbert_project_name: "konodyuk/sirius-yandex-nlp-5th-place-solution"
 
 resources:
+  num_workers: 4
