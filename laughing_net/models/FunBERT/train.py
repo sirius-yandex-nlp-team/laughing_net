@@ -29,7 +29,7 @@ def train():
         deterministic=True,
         logger=False,
         max_epochs=params.models.FunBERT.epochs,
-        gpus=0,
+        gpus=1,
         callbacks=[dvclive_next_step_callback]
     )
 

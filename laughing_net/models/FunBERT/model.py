@@ -4,6 +4,7 @@ import torch.nn as nn
 from torch.optim import Adam, Optimizer
 import torchnlp.nn as nn_nlp
 import pytorch_lightning as pl
+from pytorch_lightning.metrics.functional import mean_squared_error
 from transformers import BertTokenizer, DistilBertTokenizer, RobertaTokenizer, RobertaModel, BertModel, DistilBertModel
 
 from laughing_net.logger import logger
@@ -39,7 +40,7 @@ class FunBERT(pl.LightningModule):
             nn.Linear(768 * 8, 1024))
         self.final_linear = nn.Sequential(nn.Dropout(0.3), nn.Linear(1024, 1))
 
-        self.loss = nn.MSELoss()
+        self.loss = mean_squared_error
 
     def configure_optimizers(self) -> Optimizer:
         '''
@@ -130,6 +131,7 @@ class FunBERT(pl.LightningModule):
         target = batch['target']
 
         scores = self.forward(original_seq, edited_seq, entity_locs)
+        # loss = self.criterion(scores, target)
         loss = self.criterion(scores, target)
 
         nn.utils.clip_grad_norm_(self.parameters(), 1.0)
@@ -217,10 +219,9 @@ class FunBERT(pl.LightningModule):
                 Return of the model
             target (`torch.Tensor`)
                 Target value
-            
 
         Returns:
         `torch.Tensor`
             Calculated loss
         '''
-        return self.loss(prediction.squeeze(1), target)
+        return self.loss(prediction.squeeze(1).float(), target.float())
