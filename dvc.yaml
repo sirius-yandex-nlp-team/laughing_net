@@ -230,3 +230,5 @@ stages:
     - models.rugpt.checkpoint_name
     - models.rugpt.name
     - models.rugpt.stages.train
+    outs:
+    - artifacts/rugpt_ckpt
