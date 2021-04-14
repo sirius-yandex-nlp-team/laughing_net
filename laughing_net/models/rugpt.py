@@ -8,8 +8,8 @@ from transformers import (
 )
 from datasets import load_dataset
 
-from src.context import ctx
-from src.config import params
+from laughing_net.context import ctx
+from laughing_net.config import params
 
 @click.group()
 def cli():

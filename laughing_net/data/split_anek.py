@@ -1,7 +1,7 @@
 from sklearn.model_selection import train_test_split
 
-from src.context import ctx
-from src.config import params
+from laughing_net.context import ctx
+from laughing_net.config import params
 
 def split_data(lines):
     lines = [line.strip() for line in lines]
