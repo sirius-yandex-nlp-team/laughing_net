@@ -3,3 +3,26 @@ data:
     split:
       test_size: 0.1
       random_state: 42
+
+models:
+  rugpt:
+    name: "sberbank-ai/rugpt3large_based_on_gpt2"
+    checkpoint_name: "rugpt_ckpt"
+    stages:
+      train:
+        num_train_epochs: 3
+        per_device_train_batch_size: 32
+        per_device_eval_batch_size: 64
+        eval_steps: 400
+        save_steps: 800
+        warmup_steps: 500
+
+      generation:
+        min_length: 50
+        max_length: 500
+        temperature: 0.3
+        top_k: 60
+        top_p: 0.8
+        repetition_penalty: 1.2
+        num_return_sequences: 3
+        do_sample: true

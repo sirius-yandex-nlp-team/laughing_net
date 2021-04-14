@@ -219,3 +219,14 @@ stages:
     outs:
     - data/processed/anek_test.txt
     - data/processed/anek_train.txt
+  train_rugpt_anek:
+    cmd: python3 laughing_net/models/rugpt.py train --train-name anek_train.txt --test-name
+      anek_test.txt
+    deps:
+    - data/processed/anek_test.txt
+    - data/processed/anek_train.txt
+    - laughing_net/models/rugpt.py
+    params:
+    - models.rugpt.checkpoint_name
+    - models.rugpt.name
+    - models.rugpt.stages.train
