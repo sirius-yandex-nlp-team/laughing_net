@@ -1,8 +1,8 @@
 import click
 
 from transformers import (
-    AutoTokenizer, 
-    AutoModelForCausalLM, 
+    GPT2Tokenizer,
+    GPT2LMHeadModel,
     DataCollatorForLanguageModeling,
     TrainingArguments,
     Trainer,
@@ -25,9 +25,9 @@ def cli():
 def train(train_name, test_name, train_type, test_type):
     rugpt_params = params.models.rugpt
     train_params = rugpt_params.stages.train
-    tokenizer = AutoTokenizer.from_pretrained(rugpt_params.name)
+    tokenizer = GPT2Tokenizer.from_pretrained(rugpt_params.name)
     tokenizer.pad_token = "<pad>"
-    model = AutoModelForCausalLM.from_pretrained(rugpt_params.name)
+    model = GPT2LMHeadModel.from_pretrained(rugpt_params.name)
     dataset_dict = load_dataset(
         train_type, 
         data_files={
@@ -57,7 +57,21 @@ def train(train_name, test_name, train_type, test_type):
 
 @cli.command()
 def generate():
-    pass
+    rugpt_params = params.models.rugpt
+    generation_params = rugpt_params.stages.generation
+    tokenizer = GPT2Tokenizer.from_pretrained("sberbank-ai/rugpt3small_based_on_gpt2")
+    model = GPT2LMHeadModel.from_pretrained(ctx.root_dir / "artifacts" / rugpt_params.output_name)
+    try:
+        generator = pipeline("text-generation", model=model, tokenizer=tokenizer, device=0)
+    except:
+        generator = pipeline("text-generation", model=model, tokenizer=tokenizer)
+    while True:
+        prompt = input("> ")
+        results = generator(prompt, **generation_params)
+        for result in results:
+            print("=" * 20)
+            print(result["generated_text"])
+            print("=" * 20)
 
 if __name__ == "__main__":
     cli()
