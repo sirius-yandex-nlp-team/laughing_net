@@ -628,3 +628,24 @@ stages:
     - path: outputs/table.csv
       md5: 262bfdc07ee600e9c871627027938a01
       size: 1045
+  split_anek:
+    cmd: python3 laughing_net/data/split_anek.py
+    deps:
+    - path: data/raw/anek.txt
+      md5: ef52aa8ec807c45fe066b02edf18190e
+      size: 26762684
+    - path: laughing_net/data/split_anek.py
+      md5: cc66c74045a5f5013960eef66a060d2b
+      size: 924
+    params:
+      params.yaml:
+        data.anek.split:
+          test_size: 0.1
+          random_state: 42
+    outs:
+    - path: data/processed/anek_test.txt
+      md5: f6ad0c6d6e6fdf4d41a3e6c34a34aa16
+      size: 2485002
+    - path: data/processed/anek_train.txt
+      md5: 667517df3fd4c41ce806d16d2aebdbcd
+      size: 22291178
