@@ -25,6 +25,9 @@ def cli():
 def train(train_name, test_name, train_type, test_type):
     rugpt_params = params.models.rugpt
     train_params = rugpt_params.stages.train
+    tokenizer = AutoTokenizer.from_pretrained(rugpt_params.name)
+    tokenizer.pad_token = tokenizer.eos_token
+    model = AutoModelForCausalLM.from_pretrained(rugpt_params.name)
     dataset_dict = load_dataset(
         train_type, 
         data_files={
@@ -32,10 +35,8 @@ def train(train_name, test_name, train_type, test_type):
             "test": str(ctx.data_dir / "processed" / test_name),
         }
     )
-    train_dataset = dataset_dict["train"]
-    test_dataset = dataset_dict["test"]
-    tokenizer = AutoTokenizer.from_pretrained(rugpt_params.name)  
-    model = AutoModelForCausalLM.from_pretrained(rugpt_params.name)
+    train_dataset = dataset_dict["train"].map(lambda examples: tokenizer(examples['text']), batched=True)
+    test_dataset = dataset_dict["test"].map(lambda examples: tokenizer(examples['text']), batched=True)
     data_collator = DataCollatorForLanguageModeling(
         tokenizer=tokenizer, mlm=False,
     )
