@@ -1,10 +1,10 @@
 from typing import Dict, List
+import numpy as np
 import torch
 import torch.nn as nn
 from torch.optim import Adam, Optimizer
 import torchnlp.nn as nn_nlp
 import pytorch_lightning as pl
-from pytorch_lightning.metrics.functional import mean_squared_error
 from transformers import BertTokenizer, DistilBertTokenizer, RobertaTokenizer, RobertaModel, BertModel, DistilBertModel
 
 from laughing_net.logger import logger
@@ -40,7 +40,7 @@ class FunBERT(pl.LightningModule):
             nn.Linear(768 * 8, 1024))
         self.final_linear = nn.Sequential(nn.Dropout(0.3), nn.Linear(1024, 1))
 
-        self.loss = mean_squared_error
+        self.loss = nn.MSELoss()
 
     def configure_optimizers(self) -> Optimizer:
         '''
@@ -131,12 +131,10 @@ class FunBERT(pl.LightningModule):
         target = batch['target']
 
         scores = self.forward(original_seq, edited_seq, entity_locs)
-        # loss = self.criterion(scores, target)
         loss = self.criterion(scores, target)
-
         nn.utils.clip_grad_norm_(self.parameters(), 1.0)
 
-        logger.log_metric("train_loss", loss.item())
+        logger.log_metric("train_loss", torch.sqrt(loss))
         return {"loss": loss}
 
     def train_end(self, outputs: List[Dict]) -> None:
@@ -148,7 +146,7 @@ class FunBERT(pl.LightningModule):
                 List of losses
         '''
 
-        train_loss_mean = torch.stack([x["loss"] for x in outputs]).mean()
+        train_loss_mean = torch.stack([torch.sqrt(x["loss"]) for x in outputs]).mean()
 
         logs = {
             "train_loss": train_loss_mean,
@@ -185,10 +183,9 @@ class FunBERT(pl.LightningModule):
 
         scores = self.forward(original_seq, edited_seq, entity_locs)
         loss = self.criterion(scores, target)
-
-        # TODO Add model save
-
-        return {"val_loss": loss}
+        
+        logger.log_metric("val_loss", torch.sqrt(loss))
+        return {"loss": loss}
 
     def validation_end(self, outputs: List[Dict]) -> None:
         '''
@@ -199,10 +196,9 @@ class FunBERT(pl.LightningModule):
                 List of losses
         '''
 
-        valid_loss_mean = torch.stack(
-            [x["valid_loss"] for x in outputs]).mean()
+        valid_loss_mean = torch.stack([torch.sqrt(x["loss"]) for x in outputs]).mean()
         logs = {
-            "valid_loss": valid_loss_mean,
+            "val_loss": valid_loss_mean,
         }
 
         for key, value in logs.items():

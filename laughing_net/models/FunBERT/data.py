@@ -26,27 +26,23 @@ class FunDataset:
 
     def __tokenize(self, sentence: str, org: bool):
         if self.model_type == "bert":
-            sentence = f"<s> {sentence} </s>"
+            sentence = f"[CLS] {sentence} [SEP]"
         elif self.model_type == "roberta":
-            sentence = f"[CLS] {sentence} [CLS]"
+            sentence = f"<s> {sentence} </s>"
 
         tokenized_text = self.tokenizer.tokenize(sentence)
         sentence = self.tokenizer.convert_tokens_to_ids(tokenized_text)
 
         if self.model_type == 'bert':
             if org:
-                entity_locs = [i for i, s in enumerate(
-                    tokenized_text) if '<' in s]
+                entity_locs = [i for i, s in enumerate(tokenized_text) if s == '<']
             else:
-                entity_locs = [i for i, s in enumerate(
-                    tokenized_text) if '^' in s]
-        if self.model_type == 'roberta':
+                entity_locs = [i for i, s in enumerate(tokenized_text) if s == '^']
+        elif self.model_type == 'roberta':
             if org:
-                entity_locs = [i for i, s in enumerate(
-                    tokenized_text) if '<' in s and len(s) == 2]
+                entity_locs = [i for i, s in enumerate(tokenized_text) if '<' in s and len(s) == 2]
             else:
-                entity_locs = [i for i, s in enumerate(
-                    tokenized_text) if '^' in s and len(s) == 2]
+                entity_locs = [i for i, s in enumerate(tokenized_text) if '^' in s and len(s) == 2]
 
         return sentence, entity_locs
 
