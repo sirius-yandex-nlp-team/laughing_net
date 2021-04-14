@@ -43,7 +43,6 @@ def train(train_name, test_name, train_type, test_type):
         data_collator=data_collator,
         train_dataset=train_dataset,
         eval_dataset=test_dataset,
-        prediction_loss_only=True,
     )
     trainer.train()
 
