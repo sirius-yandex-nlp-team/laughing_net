@@ -6,7 +6,7 @@ data:
 
 models:
   rugpt:
-    name: "sberbank-ai/rugpt3large_based_on_gpt2"
+    name: "sberbank-ai/rugpt3small_based_on_gpt2"
     checkpoint_name: "rugpt_ckpt"
     output_name: "rugpt_ckpt"
     stages:
