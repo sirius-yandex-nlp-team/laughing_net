@@ -41,7 +41,7 @@ def train(train_name, test_name, train_type, test_type):
         tokenizer=tokenizer, mlm=False,
     )
     training_args = TrainingArguments(
-        output_dir=ctx.root_dir / "artifacts" / rugpt_params.checkpoint_name,
+        output_dir=ctx.root_dir / "checkpoints" / rugpt_params.checkpoint_name,
         overwrite_output_dir=True,
         **train_params,
     )
@@ -53,6 +53,7 @@ def train(train_name, test_name, train_type, test_type):
         eval_dataset=test_dataset,
     )
     trainer.train()
+    trainer.save_model(ctx.root_dir / "artifacts" / rugpt_params.output_name)
 
 @cli.command()
 def generate():

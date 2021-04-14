@@ -8,6 +8,7 @@ models:
   rugpt:
     name: "sberbank-ai/rugpt3large_based_on_gpt2"
     checkpoint_name: "rugpt_ckpt"
+    output_name: "rugpt_ckpt"
     stages:
       train:
         num_train_epochs: 3
@@ -16,6 +17,7 @@ models:
         eval_steps: 400
         save_steps: 800
         warmup_steps: 500
+        load_best_model_at_end: true
 
       generation:
         min_length: 50
