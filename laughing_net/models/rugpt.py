@@ -26,7 +26,7 @@ def train(train_name, test_name, train_type, test_type):
     rugpt_params = params.models.rugpt
     train_params = rugpt_params.stages.train
     tokenizer = AutoTokenizer.from_pretrained(rugpt_params.name)
-    tokenizer.pad_token = tokenizer.eos_token
+    tokenizer.pad_token = "<pad>"
     model = AutoModelForCausalLM.from_pretrained(rugpt_params.name)
     dataset_dict = load_dataset(
         train_type, 
