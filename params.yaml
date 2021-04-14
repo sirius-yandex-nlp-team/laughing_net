@@ -12,12 +12,13 @@ models:
     stages:
       train:
         num_train_epochs: 3
-        per_device_train_batch_size: 32
-        per_device_eval_batch_size: 64
+        per_device_train_batch_size: 16
+        per_device_eval_batch_size: 32
         eval_steps: 400
         save_steps: 800
         warmup_steps: 500
         load_best_model_at_end: true
+        evaluation_strategy: "steps"
 
       generation:
         min_length: 50
