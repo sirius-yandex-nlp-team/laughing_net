@@ -42,7 +42,6 @@ def train(train_name, test_name, train_type, test_type):
     )
     training_args = TrainingArguments(
         output_dir=ctx.root_dir / "checkpoints" / rugpt_params.checkpoint_name,
-        overwrite_output_dir=True,
         **train_params,
     )
     trainer = Trainer(
