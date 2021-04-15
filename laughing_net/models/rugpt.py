@@ -56,11 +56,12 @@ def train(train_name, test_name, train_type, test_type):
     trainer.save_model(ctx.root_dir / "artifacts" / rugpt_params.output_name)
 
 @cli.command()
-def generate():
+@click.option("--ckpt", type=click.Path(file_okay=False, exists=True, resolve_path=True))
+def generate(ckpt):
     rugpt_params = params.models.rugpt
     generation_params = rugpt_params.stages.generation
     tokenizer = GPT2Tokenizer.from_pretrained("sberbank-ai/rugpt3small_based_on_gpt2")
-    model = GPT2LMHeadModel.from_pretrained(ctx.root_dir / "artifacts" / rugpt_params.output_name)
+    model = GPT2LMHeadModel.from_pretrained(ckpt or (ctx.root_dir / "artifacts" / rugpt_params.output_name))
     try:
         generator = pipeline("text-generation", model=model, tokenizer=tokenizer, device=0)
     except:
