@@ -628,3 +628,56 @@ stages:
     - path: outputs/table.csv
       md5: 262bfdc07ee600e9c871627027938a01
       size: 1045
+  split_anek:
+    cmd: python3 laughing_net/data/split_anek.py
+    deps:
+    - path: data/raw/anek.txt
+      md5: ef52aa8ec807c45fe066b02edf18190e
+      size: 26762684
+    - path: laughing_net/data/split_anek.py
+      md5: d6aae139bfff80ffe2356f171dffc328
+      size: 942
+    params:
+      params.yaml:
+        data.anek.split:
+          test_size: 0.1
+          random_state: 42
+    outs:
+    - path: data/processed/anek_test.txt
+      md5: f6ad0c6d6e6fdf4d41a3e6c34a34aa16
+      size: 2485002
+    - path: data/processed/anek_train.txt
+      md5: 667517df3fd4c41ce806d16d2aebdbcd
+      size: 22291178
+  train_rugpt_anek:
+    cmd: python3 laughing_net/models/rugpt.py train --train-name anek_train.txt --test-name
+      anek_test.txt
+    deps:
+    - path: data/processed/anek_test.txt
+      md5: f6ad0c6d6e6fdf4d41a3e6c34a34aa16
+      size: 2485002
+    - path: data/processed/anek_train.txt
+      md5: 667517df3fd4c41ce806d16d2aebdbcd
+      size: 22291178
+    - path: laughing_net/models/rugpt.py
+      md5: 721f665f7be53677f4e3ac52b73423bf
+      size: 2675
+    params:
+      params.yaml:
+        models.rugpt.checkpoint_name: rugpt_ckpt
+        models.rugpt.name: sberbank-ai/rugpt3small_based_on_gpt2
+        models.rugpt.stages.train:
+          num_train_epochs: 10
+          per_device_train_batch_size: 8
+          per_device_eval_batch_size: 16
+          eval_steps: 500
+          evaluation_strategy: steps
+          save_total_limit: 3
+          warmup_steps: 500
+          load_best_model_at_end: true
+          overwrite_output_dir: true
+    outs:
+    - path: artifacts/rugpt_ckpt
+      md5: 63e7be3371ec4c17d11c62f6d8d76109.dir
+      size: 551327405
+      nfiles: 3

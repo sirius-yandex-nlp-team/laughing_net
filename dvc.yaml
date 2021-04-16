@@ -106,7 +106,7 @@ stages:
     - external/table_repo/exp2/roberta-base_finetune_1_lr_2e-05_schedule_linear_schedule_with_warmup_epoch_3_feature_edit-original_extra_0_seed_1
     - external/table_repo/exp2/roberta-base_finetune_1_lr_2e-05_schedule_none_epoch_10_feature_edit-context_extra_1_seed_1
     - external/table_repo/exp2/roberta-base_finetune_1_lr_5e-05_schedule_none_epoch_10_feature_edit-original_extra_1_seed_1
-  
+
   format_table:
     cmd: python3 laughing_net/postprocessing/format_table.py
     deps:
@@ -209,3 +209,26 @@ stages:
     - external/table_repo/exp2/roberta-base_finetune_1_lr_5e-05_schedule_none_epoch_10_feature_edit-original_extra_1_seed_1/metrics.json
     outs:
     - outputs/table.csv
+  split_anek:
+    cmd: python3 laughing_net/data/split_anek.py
+    deps:
+    - data/raw/anek.txt
+    - laughing_net/data/split_anek.py
+    params:
+    - data.anek.split
+    outs:
+    - data/processed/anek_test.txt
+    - data/processed/anek_train.txt
+  train_rugpt_anek:
+    cmd: python3 laughing_net/models/rugpt.py train --train-name anek_train.txt --test-name
+      anek_test.txt
+    deps:
+    - data/processed/anek_test.txt
+    - data/processed/anek_train.txt
+    - laughing_net/models/rugpt.py
+    params:
+    - models.rugpt.checkpoint_name
+    - models.rugpt.name
+    - models.rugpt.stages.train
+    outs:
+    - artifacts/rugpt_ckpt
